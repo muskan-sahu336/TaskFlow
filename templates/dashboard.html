@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <h1>TaskFlow</h1>
+    <div class="topbar-right">
+      <span id="welcome"></span>
+      <button type="button" class="btn-outline" id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2 id="form-title">Add a task</h2>
+      <form id="task-form">
+        <input type="text" id="title" placeholder="Task title" maxlength="150" required>
+        <textarea id="description" rows="2" placeholder="Description (optional)"></textarea>
+        <div class="row">
+          <select id="priority">
+            <option value="low">Low priority</option>
+            <option value="medium" selected>Medium priority</option>
+            <option value="high">High priority</option>
+          </select>
+          <select id="status">
+            <option value="pending">Pending</option>
+            <option value="in_progress">In progress</option>
+            <option value="done">Done</option>
+          </select>
+          <input type="date" id="due_date">
+        </div>
+        <p class="error" id="form-error"></p>
+        <div class="row">
+          <button type="submit" class="btn-primary" id="save-btn">Add task</button>
+          <button type="button" class="btn-outline hidden" id="cancel-btn">Cancel edit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="filters" id="filters">
+      <button type="button" class="chip active" data-filter="all">All</button>
+      <button type="button" class="chip" data-filter="pending">Pending</button>
+      <button type="button" class="chip" data-filter="in_progress">In progress</button>
+      <button type="button" class="chip" data-filter="done">Done</button>
+    </section>
+
+    <section id="task-list" class="task-list"></section>
+    <p id="empty" class="empty hidden">No tasks here yet.</p>
+  </main>
+
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
